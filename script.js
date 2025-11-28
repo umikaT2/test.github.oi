@@ -9,6 +9,6 @@ btn?.addEventListener("click", () => {
   root.dataset.theme = next;
   localStorage.setItem("theme", next);
 });
-
+//中文
 // year
 document.getElementById("year").textContent = new Date().getFullYear();
