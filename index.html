@@ -101,7 +101,7 @@
             font-size: 50px;
             color: #888;
         }
-        
+
         .avatar img {
             width: 100%;
             height: 100%;
@@ -157,7 +157,7 @@
             background: var(--color-bg-primary);
             z-index: 10;
         }
-        
+
         .tab-item {
             padding: 8px 0 12px 0;
             color: var(--color-text-main);
@@ -168,12 +168,20 @@
             cursor: pointer;
             border-bottom: 2px solid transparent;
         }
-        
+
         .tab-item.active {
             font-weight: 600;
             border-bottom-color: #f78166; /* Orange line */
         }
-        
+
+        .tab-section {
+            display: none;
+        }
+
+        .tab-section.active {
+            display: block;
+        }
+
         .counter {
             background: rgba(110,118,129,0.4);
             border-radius: 10px;
@@ -213,7 +221,7 @@
             font-weight: 600;
             color: var(--color-accent);
         }
-        
+
         .repo-desc {
             font-size: 12px;
             color: var(--color-text-secondary);
@@ -243,26 +251,123 @@
             padding: 20px;
             margin-top: 24px;
         }
-        
+
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(52, 1fr);
             gap: 3px;
             margin-top: 10px;
         }
-        
+
         .day {
             width: 10px;
             height: 10px;
             border-radius: 2px;
             background-color: #161b22; /* Empty */
         }
-        
+
         /* 模拟贡献颜色 */
         .lvl-1 { background-color: #0e4429; }
         .lvl-2 { background-color: #006d32; }
         .lvl-3 { background-color: #26a641; }
         .lvl-4 { background-color: #39d353; }
+
+        /* Projects */
+        .projects-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .project-column {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-column header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--color-border);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-count {
+            background: rgba(110,118,129,0.35);
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .project-card {
+            padding: 16px;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .project-card:last-child {
+            border-bottom: none;
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .status-pill {
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: rgba(46, 164, 79, 0.15);
+            color: #3fb950;
+            border: 1px solid rgba(46,164,79,0.4);
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-pill.pending {
+            background: rgba(88, 166, 255, 0.12);
+            color: var(--color-accent);
+            border-color: rgba(88,166,255,0.3);
+        }
+
+        .status-pill.blocked {
+            background: rgba(248, 129, 102, 0.12);
+            color: #f78166;
+            border-color: rgba(248,129,102,0.3);
+        }
+
+        .project-desc {
+            color: var(--color-text-secondary);
+            font-size: 13px;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
 
         /* 响应式 */
         @media (max-width: 768px) {
@@ -277,7 +382,7 @@
 
     <header>
         <a href="#" class="logo">
-            <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.082.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
         </a>
         <div class="search-bar">
             <input type="text" placeholder="Search or jump to...">
@@ -292,7 +397,7 @@
     </header>
 
     <div class="container">
-        
+
         <aside class="profile-sidebar">
             <div class="avatar">
                 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Avatar">
@@ -305,7 +410,7 @@
                 全栈开发者 | 开源爱好者 👨‍💻 <br>
                 Building things for the web.
             </div>
-            
+
             <button class="btn">Edit profile</button>
 
             <div class="stats">
@@ -321,113 +426,237 @@
         </aside>
 
         <main class="main-content">
-            
+
             <nav class="tab-nav">
-                <div class="tab-item">Overview</div>
-                <div class="tab-item active">
+                <div class="tab-item" data-target="overview">Overview</div>
+                <div class="tab-item active" data-target="repositories">
                     Repositories <span class="counter">42</span>
                 </div>
-                <div class="tab-item">Projects</div>
-                <div class="tab-item">Packages</div>
-                <div class="tab-item">Stars <span class="counter">105</span></div>
+                <div class="tab-item" data-target="projects">Projects</div>
+                <div class="tab-item" data-target="packages">Packages</div>
+                <div class="tab-item" data-target="stars">Stars <span class="counter">105</span></div>
             </nav>
 
-            <h3 class="section-title">Pinned</h3>
-            <div class="pinned-grid">
-                <div class="repo-card">
-                    <div>
-                        <div class="repo-header">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
-                            <a href="#">awesome-project</a>
+            <section class="tab-section" data-tab="overview">
+                <p style="color: var(--color-text-secondary);">Select a tab to view more details about Developer One's work.</p>
+            </section>
+
+            <section class="tab-section active" data-tab="repositories">
+                <h3 class="section-title">Pinned</h3>
+                <div class="pinned-grid">
+                    <div class="repo-card">
+                        <div>
+                            <div class="repo-header">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#">awesome-project</a>
+                            </div>
+                            <div class="repo-desc">一个非常棒的开源项目，用于演示 GitHub 界面复刻。</div>
                         </div>
-                        <div class="repo-desc">一个非常棒的开源项目，用于演示 GitHub 界面复刻。</div>
-                    </div>
-                    <div class="repo-meta">
-                        <span><span class="lang-color" style="background-color: #f1e05a;"></span> JavaScript</span>
-                        <span>★ 1.5k</span>
-                        <span>⑂ 234</span>
-                    </div>
-                </div>
-
-                <div class="repo-card">
-                    <div>
-                        <div class="repo-header">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
-                            <a href="#">react-clone-ui</a>
+                        <div class="repo-meta">
+                            <span><span class="lang-color" style="background-color: #f1e05a;"></span> JavaScript</span>
+                            <span>★ 1.5k</span>
+                            <span>⑂ 234</span>
                         </div>
-                        <div class="repo-desc">Using React to build UI components.</div>
                     </div>
-                    <div class="repo-meta">
-                        <span><span class="lang-color" style="background-color: #3178c6;"></span> TypeScript</span>
-                        <span>★ 890</span>
-                    </div>
-                </div>
 
-                <div class="repo-card">
-                    <div>
-                        <div class="repo-header">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
-                            <a href="#">python-scripts</a>
+                    <div class="repo-card">
+                        <div>
+                            <div class="repo-header">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#">react-clone-ui</a>
+                            </div>
+                            <div class="repo-desc">Using React to build UI components.</div>
                         </div>
-                        <div class="repo-desc">Automation tools for daily life.</div>
-                    </div>
-                    <div class="repo-meta">
-                        <span><span class="lang-color" style="background-color: #3572A5;"></span> Python</span>
-                        <span>★ 230</span>
-                    </div>
-                </div>
-
-                <div class="repo-card">
-                    <div>
-                        <div class="repo-header">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
-                            <a href="#">portfolio</a>
+                        <div class="repo-meta">
+                            <span><span class="lang-color" style="background-color: #3178c6;"></span> TypeScript</span>
+                            <span>★ 890</span>
                         </div>
-                        <div class="repo-desc">My personal portfolio website.</div>
                     </div>
-                    <div class="repo-meta">
-                        <span><span class="lang-color" style="background-color: #e34c26;"></span> HTML</span>
-                        <span>★ 55</span>
+
+                    <div class="repo-card">
+                        <div>
+                            <div class="repo-header">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#">python-scripts</a>
+                            </div>
+                            <div class="repo-desc">Automation tools for daily life.</div>
+                        </div>
+                        <div class="repo-meta">
+                            <span><span class="lang-color" style="background-color: #3572A5;"></span> Python</span>
+                            <span>★ 230</span>
+                        </div>
+                    </div>
+
+                    <div class="repo-card">
+                        <div>
+                            <div class="repo-header">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" fill="#8b949e"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#">portfolio</a>
+                            </div>
+                            <div class="repo-desc">My personal portfolio website.</div>
+                        </div>
+                        <div class="repo-meta">
+                            <span><span class="lang-color" style="background-color: #e34c26;"></span> HTML</span>
+                            <span>★ 55</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <h3 class="section-title">1,240 contributions in the last year</h3>
-            <div class="contributions">
-                <div class="calendar-grid">
-                    <div class="day lvl-1"></div><div class="day lvl-2"></div><div class="day"></div><div class="day lvl-3"></div><div class="day"></div><div class="day"></div><div class="day lvl-4"></div>
-                    
-                    <script>
-                        // 简单的脚本来填充格子，避免HTML太长
-                        for(let i=0; i<300; i++) {
-                            const div = document.createElement('div');
-                            div.className = 'day';
-                            // 随机添加颜色等级
-                            const rand = Math.random();
-                            if(rand > 0.8) div.classList.add('lvl-1');
-                            else if(rand > 0.9) div.classList.add('lvl-2');
-                            else if(rand > 0.95) div.classList.add('lvl-3');
-                            else if(rand > 0.98) div.classList.add('lvl-4');
-                            document.write(div.outerHTML);
-                        }
-                    </script>
-                </div>
-                <div style="margin-top: 10px; font-size: 12px; color: var(--color-text-secondary); display: flex; justify-content: space-between;">
-                   <span>Learn how we count contributions</span>
-                   <span style="display:flex; align-items:center; gap:4px;">
-                       Less 
-                       <span class="day"></span>
-                       <span class="day lvl-1"></span>
-                       <span class="day lvl-2"></span>
-                       <span class="day lvl-3"></span>
-                       <span class="day lvl-4"></span>
-                       More
-                   </span>
-                </div>
-            </div>
+                <h3 class="section-title">1,240 contributions in the last year</h3>
+                <div class="contributions">
+                    <div class="calendar-grid">
+                        <div class="day lvl-1"></div><div class="day lvl-2"></div><div class="day"></div><div class="day lvl-3"></div><div class="day"></div><div class="day"></div><div class="day lvl-4"></div>
 
+                        <script>
+                            // 简单的脚本来填充格子，避免HTML太长
+                            for(let i=0; i<300; i++) {
+                                const div = document.createElement('div');
+                                div.className = 'day';
+                                // 随机添加颜色等级
+                                const rand = Math.random();
+                                if(rand > 0.8) div.classList.add('lvl-1');
+                                else if(rand > 0.9) div.classList.add('lvl-2');
+                                else if(rand > 0.95) div.classList.add('lvl-3');
+                                else if(rand > 0.98) div.classList.add('lvl-4');
+                                document.write(div.outerHTML);
+                            }
+                        </script>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 12px; color: var(--color-text-secondary); display: flex; justify-content: space-between;">
+                       <span>Learn how we count contributions</span>
+                       <span style="display:flex; align-items:center; gap:4px;">
+                           Less
+                           <span class="day"></span>
+                           <span class="day lvl-1"></span>
+                           <span class="day lvl-2"></span>
+                           <span class="day lvl-3"></span>
+                           <span class="day lvl-4"></span>
+                           More
+                       </span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-section" data-tab="projects">
+                <h3 class="section-title">Projects board</h3>
+                <div class="projects-board">
+                    <div class="project-column">
+                        <header>Todo <span class="project-count">2</span></header>
+                        <div class="project-card">
+                            <a class="project-title" href="#">Design System Refresh</a>
+                            <div class="project-desc">Update component tokens and document the new typography scale.</div>
+                            <div class="project-meta">
+                                <span class="status-pill pending">Planned</span>
+                                <span>Owner: @design-lead</span>
+                            </div>
+                            <div class="project-footer">
+                                <span>📌 In backlog</span>
+                                <a href="#">View roadmap</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <a class="project-title" href="#">API Gateway Hardening</a>
+                            <div class="project-desc">Rate limiting rules and audit logging for the public API.</div>
+                            <div class="project-meta">
+                                <span class="status-pill pending">Planned</span>
+                                <span>Owner: @sec-team</span>
+                            </div>
+                            <div class="project-footer">
+                                <span>🔒 Security</span>
+                                <a href="#">View issue</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-column">
+                        <header>In Progress <span class="project-count">2</span></header>
+                        <div class="project-card">
+                            <a class="project-title" href="#">Developer Portal</a>
+                            <div class="project-desc">Guides, API explorers, and SDK downloads to support partners.</div>
+                            <div class="project-meta">
+                                <span class="status-pill">In progress</span>
+                                <span>Owner: @devrel</span>
+                            </div>
+                            <div class="project-footer">
+                                <span>⏱️ Sprint 18</span>
+                                <a href="#">Open project</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <a class="project-title" href="#">Mobile Dark Mode</a>
+                            <div class="project-desc">Finalize assets and QA the theme toggle across devices.</div>
+                            <div class="project-meta">
+                                <span class="status-pill">In progress</span>
+                                <span>Owner: @mobile-team</span>
+                            </div>
+                            <div class="project-footer">
+                                <span>📱 iOS & Android</span>
+                                <a href="#">View PR</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-column">
+                        <header>Done <span class="project-count">1</span></header>
+                        <div class="project-card">
+                            <a class="project-title" href="#">Observability Upgrade</a>
+                            <div class="project-desc">Migrated tracing to OpenTelemetry and added SLO dashboards.</div>
+                            <div class="project-meta">
+                                <span class="status-pill">Shipped</span>
+                                <span>Owner: @platform</span>
+                            </div>
+                            <div class="project-footer">
+                                <span>✅ Released</span>
+                                <a href="#">Release notes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-column">
+                        <header>Blocked <span class="project-count">1</span></header>
+                        <div class="project-card">
+                            <a class="project-title" href="#">Data Residency EU</a>
+                            <div class="project-desc">Waiting on legal review for updated data processing addendum.</div>
+                            <div class="project-meta">
+                                <span class="status-pill blocked">Blocked</span>
+                                <span>Owner: @legal</span>
+                            </div>
+                            <div class="project-footer">
+                                <span>⏳ Pending approval</span>
+                                <a href="#">View doc</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-section" data-tab="packages">
+                <p style="color: var(--color-text-secondary);">Packages view is coming soon.</p>
+            </section>
+
+            <section class="tab-section" data-tab="stars">
+                <p style="color: var(--color-text-secondary);">Starred repositories will appear here.</p>
+            </section>
         </main>
     </div>
 
+    <script>
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab-item');
+        const sections = document.querySelectorAll('.tab-section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.target;
+
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                sections.forEach(section => {
+                    section.classList.toggle('active', section.dataset.tab === target);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
